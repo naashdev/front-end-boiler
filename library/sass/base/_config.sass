@@ -1,0 +1,41 @@
+/* --------------------------------------------------------------------------
+ * COLOR
+ * ------------------------------------------------------------------------*/
+
+// Base Color
+$color-white: #FFFFFF
+$color-line: #EBEBEB
+
+// Brand Color
+$color-brand: orange
+$color-accent: red
+
+// Font Color
+$color-font: #373737
+$color-font-light: #979797
+
+/* --------------------------------------------------------------------------
+ * FONT
+ * ------------------------------------------------------------------------*/
+
+$font-copy: 'Lato', Helvetica, Arial, sans-serif
+$font-accent: Georgia, serif
+
+// Global Line Height
+$font-line-height: 1.5
+
+/* --------------------------------------------------------------------------
+ * MEDIA
+ * ------------------------------------------------------------------------*/
+
+// Media Settings
+$media: (desktop-large: 1280px, desktop: 1080px, tablet-large: 960px, tablet: 768px, mobile: 480px)
+
+// Media Variables
+$desktop-large: "screen and (min-width: #{map-get($media, desktop-large)})"
+$desktop: "screen and (min-width: #{map-get($media, desktop)})"
+$tablet-desktop: "screen and (min-width: #{map-get($media, tablet)})"
+$tablet-large: "screen and (max-width: #{map-get($media, tablet-large)})"
+$tablet: "screen and (min-width: #{map-get($media, tablet)}) and (max-width: #{map-get($media, desktop) - 1})"
+$mobile-large: "screen and (max-width: #{map-get($media, tablet) - 1})"
+$mobile: "screen and (max-width: #{map-get($media, mobile)})"

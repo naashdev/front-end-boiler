@@ -1,0 +1,27 @@
+/* --------------------------------------------------------------------------
+ * FORMS
+ * ------------------------------------------------------------------------*/
+
+.field
+  position: relative
+  margin-bottom: 5px
+
+input[type="text"], input[type="email"], input[type="tel"], textarea
+  +font-size(1.4)
+  line-height: $font-line-height
+  font-family: $font-copy
+  width: 100%
+  background: $color-white
+  border: 1px solid $color-line
+  margin-bottom: 10px
+  -webkit-appearance: none
+
+textarea
+  overflow: auto
+  height: 145px
+
+label.error
+  font-size: 1.2em
+  color: $color-brand
+  padding: 0 0 5px 5px
+  display: inline-block

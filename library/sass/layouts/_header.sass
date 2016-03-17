@@ -1,0 +1,44 @@
+/* --------------------------------------------------------------------------
+ * HEADER
+ * ------------------------------------------------------------------------*/
+
+.header
+  .main-navigation
+    @media #{$mobile-large}
+      display: none
+
+// Mobile Menu
+.menu-ctrl
+  width: 30px
+  height: 22px
+  display: block
+  position: relative
+  @media #{$tablet-desktop}
+    display: none
+  > .line
+    width: 30px
+    height: 2px
+    background: $color-font
+    display: block
+    position: absolute
+  > .line1
+    top: 0px
+    +transition(.4s ease-in-out)
+  > .line2
+    top: 10px
+    +transition(.3s ease-in-out)
+  > .line3
+    top: 20px
+    +transition(.4s ease-in-out)
+
+.nav-open
+  .header
+    .menu-ctrl
+      > .line1
+        +transform(rotate(45deg))
+        top: 10px
+      > .line2
+        opacity: 0
+      > .line3
+        +transform(rotate(-45deg))
+        top: 10px
