@@ -1,30 +1,98 @@
-/* --------------------------------------------------------------------------
- * DOCUMENT READY JS
- * ------------------------------------------------------------------------*/
+/* --------------------------------
+ | Document Ready JS
+ * ------------------------------*/
 
 $(function(){
 
-    exampleModule.init();
-    //alert('other');
+  // Environment
+  $BODY = $('body');
+  $HTML = $('html');
+  $WINDOW = $(window);
+  VPW = null;
+  ISMOBILE = false;
+  NOTMOBILE = false;
+
+  // Settings
+  EASING = {
+    easing: 'easeInOut'
+  };
+
+  // Modules
+  App.init();
+  Example.init();
 
 });
 
-/* --------------------------------------------------------------------------
- * EXAMPLE MODULE
- * ------------------------------------------------------------------------*/
+/* --------------------------------
+ | App
+ * ------------------------------*/
 
-exampleModule = (function(){
+App = (function(){
 
-    var _self = {};
+  var _self = {
 
-    function init(){
-        alert('Boilerplate');
+    init: function(){
+
+      _self.setVPVars();
+
+      $WINDOW.resize(function(){
+        _self.setVPVars();
+      });
+
+    },
+
+    setVPVars: function(){
+      VPW = $WINDOW.width();
+      ISMOBILE = VPW < 768;
+      NOTMOBILE = VPW > 767;
     }
 
-    _self = {
-        init: init
-    };
+  }
 
-    return _self;
+  return _self;
+
+})();
+
+/* --------------------------------
+ | Example
+ * ------------------------------*/
+
+Example = (function() {
+
+  var _self = {
+
+    init: function(){
+
+      alert('Boilerplate Loaded')
+
+      var $el = {};
+
+      _self.setEl();
+      _self.bindEvents();
+
+    },
+
+    setEl: function(){
+
+      $el = {
+      };
+
+    },
+
+    bindEvents: function(){
+
+
+
+    },
+
+    clickFunction: function(e){
+
+      e.preventDefault();
+
+    },
+
+  };
+
+  return _self;
 
 })();

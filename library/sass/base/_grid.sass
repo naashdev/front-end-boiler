@@ -78,6 +78,21 @@ $grid-padding: 20px
     margin-left: -90px
     > .col
       padding-left: 90px
+  #{$row-prefix}-g-10
+    margin-left: -100px
+    > .col
+      padding-left: 100px
+  #{$row-prefix}-g-11
+    margin-left: -110px
+    > .col
+      padding-left: 110px
+  #{$row-prefix}-g-12
+    margin-left: -120px
+    > .col
+      padding-left: 120px
+
+@media #{$desktop}
+  +gridStyles('.lg', '.lg')
 
 @media #{$tablet-desktop}
   +gridStyles('.c', '.r')

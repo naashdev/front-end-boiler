@@ -29,13 +29,13 @@
   list-style: none
   margin: 0
   padding: 0
-  
+
 /* --------------------------------------------------------------------------
  * ANIMATIONS
  * ------------------------------------------------------------------------*/
 
-@mixin default-transition
-  +transition(all .3s ease-in-out)
+@mixin default-transition($property:all)
+  transition: $property .3s ease-in-out
 
-@mixin fluid-transition
-  +transition(all .3s cubic-bezier(0.165, 0.84, 0.44, 1))
+@mixin fluid-transition($property:all)
+  transition: $property .3s cubic-bezier(0.165, 0.84, 0.44, 1)

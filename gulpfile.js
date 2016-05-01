@@ -1,39 +1,49 @@
-/* --------------------------------------------------------------------------
- * PROJECT GULPFILE
- * ------------------------------------------------------------------------*/
+/* --------------------------------
+ | Project Gulpfile
+ * ------------------------------*/
 
 var gulp = require('gulp'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
+    autoprefixer = require('gulp-autoprefixer')
     cmq = require('gulp-combine-media-queries'),
-    cssNano = require('gulp-cssnano'),
+    csso = require('gulp-csso'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
-    browserSync = require('browser-sync');
+    browsersync = require('browser-sync');
 
 // Compile Styles
-gulp.task('styles', function() {
+gulp.task('compile-css', function() {
     gulp.src('library/sass/*.sass')
-    .pipe(sass({outputStyle: 'compressed'}).on('error', sass.logError))
+    .pipe(sass({outputStyle: 'expanded', sourcemap: false})
+      .on('error', sass.logError))
     .pipe(cmq({
       log: true
     }))
-    .pipe(cssNano())
+    .pipe(autoprefixer({
+      browsers: ['>1%', 'ie 9']
+    }))
+    .pipe(csso())
     .pipe(gulp.dest('library/css'));
 });
 
 // Compile JS
-gulp.task('scripts', function() {
+gulp.task('compile-js', function() {
     return gulp.src([
-      // Add JS to concat here...
+      // Add JS plugins to concat here...
+      //'library/js/plugins/viewportSize-min.js',
+      //'library/js/plugins/jquery.cycle2.min.js',
+      //'library/js/plugins/jquery.placeholder.min.js',
+      //'library/js/plugins/jquery.customSelect.min.js',
+      // Main JS
       'library/js/min/main.min.js',
     ])
     .pipe(concat('app.js'))
     .pipe(gulp.dest('library/js'));
 });
 
-// Minify JS
-gulp.task('minify-js', function() {
+// Minify Main JS
+gulp.task('main-js', function() {
     gulp.src('library/js/main.js')
     .pipe(uglify())
     .pipe(rename('main.min.js'))
@@ -44,19 +54,19 @@ gulp.task('minify-js', function() {
 gulp.task('watch', function() {
 
     // Start BrowserSync Server
-    browserSync.init({
+    browsersync.init({
         server: {
             baseDir: "./"
         }
     });
 
     // Watch Files
-    gulp.watch('library/sass/**/*.sass', ['styles']);
-    gulp.watch('library/js/main.js', ['minify-js']);
-    gulp.watch('library/js/min/main.min.js', ['scripts']);
-    gulp.watch('library/css/master.css').on('change', browserSync.reload);
-    gulp.watch('library/js/app.js').on('change', browserSync.reload);
-    gulp.watch("index.html").on('change', browserSync.reload);
+    gulp.watch('library/sass/**/*.sass', ['compile-css']);
+    gulp.watch('library/js/main.js', ['main-js']);
+    gulp.watch('library/js/min/main.min.js', ['compile-js']);
+    gulp.watch('library/css/master.css').on('change', browsersync.reload);
+    gulp.watch('library/js/app.js').on('change', browsersync.reload);
+    gulp.watch("index.html").on('change', browsersync.reload);
 
 
 });
