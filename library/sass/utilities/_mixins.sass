@@ -37,5 +37,5 @@
 @mixin default-transition($property:all)
   transition: $property .3s ease-in-out
 
-@mixin fluid-transition($property:all)
-  transition: $property .3s cubic-bezier(0.165, 0.84, 0.44, 1)
+@mixin fluid-transition($property:all, $time:.3s)
+  transition: $property $time $transition

@@ -6,7 +6,7 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     sass = require('gulp-sass'),
     autoprefixer = require('gulp-autoprefixer')
-    cmq = require('gulp-combine-media-queries'),
+    mmq = require('gulp-merge-media-queries'),
     csso = require('gulp-csso'),
     uglify = require('gulp-uglify'),
     concat = require('gulp-concat'),
@@ -17,7 +17,7 @@ gulp.task('compile-css', function() {
     gulp.src('library/sass/*.sass')
     .pipe(sass({outputStyle: 'expanded', sourcemap: false})
       .on('error', sass.logError))
-    .pipe(cmq({
+    .pipe(mmq({
       log: true
     }))
     .pipe(autoprefixer({

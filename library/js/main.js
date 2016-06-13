@@ -2,7 +2,7 @@
  | Document Ready JS
  * ------------------------------*/
 
-$(function(){
+$(function() {
 
   // Environment
   $BODY = $('body');
@@ -12,7 +12,7 @@ $(function(){
   ISMOBILE = false;
   NOTMOBILE = false;
 
-  // Settings
+  // Other Settings
   EASING = {
     easing: 'easeInOut'
   };
@@ -27,72 +27,82 @@ $(function(){
  | App
  * ------------------------------*/
 
-App = (function(){
+App = {
 
-  var _self = {
+  init: function() {
 
-    init: function(){
+    this.setEnv();
+    this.bindEvents();
 
-      _self.setVPVars();
+  },
 
-      $WINDOW.resize(function(){
-        _self.setVPVars();
-      });
+  setEnv: function() {
 
-    },
+    VPW = $WINDOW.width();
+    ISMOBILE = VPW < 768;
+    NOTMOBILE = VPW > 767;
 
-    setVPVars: function(){
-      VPW = $WINDOW.width();
-      ISMOBILE = VPW < 768;
-      NOTMOBILE = VPW > 767;
-    }
+  },
 
-  }
+  bindEvents: function() {
 
-  return _self;
+    // Global resize event
+    var resizeTimer;
 
-})();
+    $WINDOW.resize(function() {
+
+      clearTimeout(resizeTimer);
+
+      resizeTimer = setTimeout(function() {
+
+        App.resize();
+
+      }, 250);
+
+    });
+
+
+  },
+
+  resize: function() {
+
+    // Set environment vars
+    App.setEnv();
+
+    // Other resize functions
+    Example.resize();
+
+  },
+
+};
 
 /* --------------------------------
  | Example
  * ------------------------------*/
 
-Example = (function() {
+Example = {
 
-  var _self = {
+  init: function() {
 
-    init: function(){
+    this.setEl();
+    this.bindEvents();
 
-      alert('Boilerplate Loaded')
+  },
 
-      var $el = {};
+  setEl: function() {
 
-      _self.setEl();
-      _self.bindEvents();
+    $el = {};
 
-    },
+  },
 
-    setEl: function(){
+  bindEvents: function() {
 
-      $el = {
-      };
+    alert('Boilerplate initialized!!');
 
-    },
+  },
 
-    bindEvents: function(){
+  resize: function() {
 
+  }
 
-
-    },
-
-    clickFunction: function(e){
-
-      e.preventDefault();
-
-    },
-
-  };
-
-  return _self;
-
-})();
+};
