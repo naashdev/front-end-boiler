@@ -46,7 +46,7 @@ App = {
 
   bindEvents: function() {
 
-    // Global resize event
+    // Resize listener
     var resizeTimer;
 
     $WINDOW.resize(function() {
@@ -55,22 +55,33 @@ App = {
 
       resizeTimer = setTimeout(function() {
 
-        App.resize();
+        App.onResize();
 
       }, 250);
+
+    });
+
+    // Scroll listener
+    $WINDOW.scroll(function() {
 
     });
 
 
   },
 
-  resize: function() {
+  onResize: function() {
 
     // Set environment vars
     App.setEnv();
 
-    // Other resize functions
+    // Resize events go here...
     Example.resize();
+
+  },
+
+  onScroll: function() {
+
+    // Scroll events go here...
 
   },
 
@@ -102,6 +113,10 @@ Example = {
   },
 
   resize: function() {
+
+  },
+
+  scroll: function() {
 
   }
 
