@@ -12,7 +12,7 @@
     <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="library/css/master.css">
     <script src="library/js/jquery.min.js"></script>
-    <script src="library/js/app.js"></script>
+    <script src="library/js/compiled.js"></script>
   </head>
   <body>
     <header class="header">
@@ -20,14 +20,33 @@
         <a class="logo" href="#">
           <span class="hide-text">Logo</span>
         </a>
-        <nav class="main-navigation" role="navigation">
+        <nav class="main-navigation js__main-nav" role="navigation">
           <ul class="nav">
-            <li><a href="#">Item 1</a></li>
-            <li><a href="#">Item 2</a></li>
-            <li><a href="#">Item 3</a></li>
+            <li><a href="#">What We Do</a></li>
+            <li class="has-submenu">
+                <a href="#">Who We Are</a>
+                <span class="arrow js__submenu-ctrl"></span>
+                <ul class="submenu js__submenu">
+                    <li><a href="#">Item 1</a></li>
+                    <li><a href="#">Item 2</a></li>
+                    <li><a href="#">Item 3</a></li>
+                    <li><a href="#">Item 4</a></li>
+                </ul>
+            </li>
+            <li><a href="#">Get In Touch</a></li>
+            <li class="has-submenu">
+                <a href="#">Who We Are</a>
+                <span class="arrow js__submenu-ctrl"></span>
+                <ul class="submenu js__submenu">
+                    <li><a href="#">Item 1</a></li>
+                    <li><a href="#">Item 2</a></li>
+                    <li><a href="#">Item 3</a></li>
+                    <li><a href="#">Item 4</a></li>
+                </ul>
+            </li>
           </ul>
         </nav>
-        <a class="menu-ctrl" href="#">
+        <a class="menu-ctrl js__menu-ctrl" href="#">
           <span class="line line1"></span>
           <span class="line line2"></span>
           <span class="line line3"></span>
@@ -60,7 +79,7 @@
               Duis aute irure dolor in <a href="#">reprehenderit</a> in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
               Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </p>
-            <a class="btn btn-primary" id="object-btn" href="#">Button</a>
+            <a class="btn btn-primary" href="#">Button</a>
             <h2>Heading 2</h2>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dol
@@ -83,7 +102,7 @@
             </ol>
             <h4>Heading 4</h4>
             <h5>Heading 5</h5>
-            <h6>Heading 5</h6>
+            <h6>Heading 6</h6>
             <p>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
               aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.

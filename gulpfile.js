@@ -38,7 +38,7 @@ gulp.task('compile-js', function() {
       // Main JS
       'library/js/min/main.min.js',
     ])
-    .pipe(concat('app.js'))
+    .pipe(concat('compiled.js'))
     .pipe(gulp.dest('library/js'));
 });
 
@@ -65,7 +65,7 @@ gulp.task('watch', function() {
     gulp.watch('library/js/main.js', ['main-js']);
     gulp.watch('library/js/min/main.min.js', ['compile-js']);
     gulp.watch('library/css/master.css').on('change', browsersync.reload);
-    gulp.watch('library/js/app.js').on('change', browsersync.reload);
+    gulp.watch('library/js/compiled.js').on('change', browsersync.reload);
     gulp.watch("index.html").on('change', browsersync.reload);
 
 
