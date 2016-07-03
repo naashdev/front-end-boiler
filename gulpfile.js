@@ -24,6 +24,7 @@
          .pipe(autoprefixer({
            browsers: ['>1%', 'ie 9']
          }))
+         .pipe(csso())
          .pipe(gulp.dest('css'));
  });
 
@@ -34,7 +35,7 @@
          gutil.log("Browserify Error", gutil.colors.red(err.message))
       })
      .pipe(source('build.min.js'))
-     .pipe( streamify(uglify()) ) //note this
+     .pipe( streamify(uglify()) )
      .pipe(gulp.dest('js/dist'));
  });
 

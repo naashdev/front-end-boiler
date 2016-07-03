@@ -39,6 +39,20 @@
     @else
         background: $bg
 
+@mixin placeholder($color, $opacity)
+    ::-webkit-input-placeholder
+        color: $color
+        opacity: $opacity
+    :-moz-placeholder
+        color: $color
+        opacity: $opacity
+    ::-moz-placeholder
+        color: $color
+        opacity: $opacity
+    :-ms-input-placeholder
+        color: $color
+        opacity: $opacity
+
 /* --------------------------------------------------------------------------
  * ANIMATIONS
  * ------------------------------------------------------------------------*/
@@ -47,4 +61,4 @@
     transition: $property $time ease-in-out
 
 @mixin fluid-transition($property:all, $time:.3s)
-    transition: $property $time $transition
+    transition: $property $time $fluid-transition

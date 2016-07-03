@@ -1,7 +1,3 @@
-/* --------------------------------
- | Navigation
- * ------------------------------*/
-
 // Required
 // .....
 
@@ -75,7 +71,6 @@ var toggle = function(e){
 // On Resize
 var resize = function(){
     // Resize events go here...
-    console.log('nav-resized');
 };
 
 // On Scroll
@@ -86,4 +81,5 @@ var scroll = function(){
 module.exports = {
     init: init,
     resize: resize,
+    scroll: scroll,
 };

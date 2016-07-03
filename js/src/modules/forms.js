@@ -1,5 +1,5 @@
 // Required
-// .....
+var CUSTOMSELECT = require('../plugins/jquery.customSelect.min.js');
 
 // Init
 var init = function(){
@@ -7,8 +7,8 @@ var init = function(){
     // Cache elements
     setEl();
 
-    // Bind events
-    bindEvents();
+    // Style select boxes
+    $el.select.customSelect();
 
 };
 
@@ -18,7 +18,7 @@ var $el = {};
 var setEl = function(){
 
     $el = {
-        // name: $(selector)
+        select: $('.select > select'),
     };
 
 }

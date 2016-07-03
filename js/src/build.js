@@ -3,7 +3,7 @@
  * ------------------------------*/
 
 var NAV = require('./modules/navigation');
-var UTILS = require('./modules/utils');
+var FORMS = require('./modules/forms');
 
 /* --------------------------------
  | Config
@@ -26,6 +26,7 @@ var docReady = function(){
 
     // Modules
     NAV.init();
+    FORMS.init();
 
 };
 
