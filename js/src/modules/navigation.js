@@ -43,7 +43,7 @@ var toggle = function(e){
         if ($BODY.hasClass('nav-open')) {
             // Close subnavs
             $el.subnavs.slideUp();
-            $el.navLi.removeClass('is-open');
+            $el.navLi.removeClass('is__open');
         }
 
         // Open main nav
@@ -57,11 +57,11 @@ var toggle = function(e){
             subnav = parent.find('.submenu');
 
         // Close all sub navs
-        $el.navLi.not(parent).removeClass('is-open');
+        $el.navLi.not(parent).removeClass('is__open');
         $el.subnavs.not(subnav).slideUp(400);
 
         // Open sub nav
-        parent.toggleClass('is-open');
+        parent.toggleClass('is__open');
         subnav.slideToggle(400);
 
     }
