@@ -53,6 +53,14 @@
         color: $color
         opacity: $opacity
 
+@mixin selection($bg, $text)
+    ::selection
+        background: $bg
+        color: $text
+    ::-moz-selection
+        background: $bg
+        color: $text        
+
 /* --------------------------------------------------------------------------
  * ANIMATIONS
  * ------------------------------------------------------------------------*/
