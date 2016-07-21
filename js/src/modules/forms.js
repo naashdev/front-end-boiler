@@ -2,10 +2,10 @@
 var CUSTOMSELECT = require('../plugins/jquery.customSelect.min.js');
 
 // Init
-var init = function(){
+var _init = function(){
 
     // Cache elements
-    setEl();
+    _setEl();
 
     // Style select boxes
     $el.select.customSelect();
@@ -15,7 +15,7 @@ var init = function(){
 // Elements
 var $el = {};
 
-var setEl = function(){
+var _setEl = function(){
 
     $el = {
         select: $('.select > select'),
@@ -24,22 +24,22 @@ var setEl = function(){
 }
 
 // Private functions
-var bindEvents = function(){
+var _bindEvents = function(){
 
 };
 
 // On Resize
-var resize = function(){
+var _resize = function(){
     // Resize events go here...
 };
 
 // On Scroll
-var scroll = function(){
+var _scroll = function(){
     // Scroll events go here...
 };
 
 module.exports = {
-    init: init,
-    resize: resize,
-    scroll: scroll,
+    init: _init,
+    resize: _resize,
+    scroll: _scroll,
 };

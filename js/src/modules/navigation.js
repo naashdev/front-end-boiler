@@ -2,48 +2,48 @@
 // .....
 
 // Init
-var init = function(){
+var _init = function(){
 
     // Cache elements
-    setEl();
+    _setEl();
 
     // Bind events
-    bindEvents();
+    _bindEvents();
 
 };
 
 // Elements
 var $el = {};
 
-var setEl = function(){
+var _setEl = function(){
 
     $el = {
-        nav: $('.header .js__main-nav'),
+        nav: $('.header .js_main-nav'),
         navLi: $('.header .main-navigation > ul > li'),
-        subnavs: $('.header .js__submenu'),
-        openNav: $('.header .js__menu-ctrl, .header .main-navigation .js__submenu-ctrl')
+        subnavs: $('.header .main-navigation .submenu'),
+        openNav: $('.header .js_menu-ctrl, .header .main-navigation .js_submenu-ctrl')
     };
 
 }
 
 // Private functions
-var bindEvents = function(){
+var _bindEvents = function(){
 
     //Toggle nav
-    $el.openNav.on('click', toggle);
+    $el.openNav.on('click', _toggle);
 
 };
 
-var toggle = function(e){
+var _toggle = function(e){
 
     if (typeof e !== 'undefined') e.preventDefault();
 
-    if ($(this).hasClass('js__menu-ctrl')) {
+    if ($(this).hasClass('js_menu-ctrl')) {
 
         if ($BODY.hasClass('nav-open')) {
             // Close subnavs
             $el.subnavs.slideUp();
-            $el.navLi.removeClass('is__open');
+            $el.navLi.removeClass('is-open');
         }
 
         // Open main nav
@@ -57,11 +57,11 @@ var toggle = function(e){
             subnav = parent.find('.submenu');
 
         // Close all sub navs
-        $el.navLi.not(parent).removeClass('is__open');
+        $el.navLi.not(parent).removeClass('is-open');
         $el.subnavs.not(subnav).slideUp(400);
 
         // Open sub nav
-        parent.toggleClass('is__open');
+        parent.toggleClass('is-open');
         subnav.slideToggle(400);
 
     }
@@ -69,17 +69,19 @@ var toggle = function(e){
 };
 
 // On Resize
-var resize = function(){
+var _resize = function(){
     // Resize events go here...
 };
 
+
 // On Scroll
-var scroll = function(){
+var _scroll = function(){
     // Scroll events go here...
 };
 
+
 module.exports = {
-    init: init,
-    resize: resize,
-    scroll: scroll,
+    init: _init,
+    resize: _resize,
+    scroll: _scroll,
 };

@@ -9,68 +9,62 @@ var FORMS = require('./modules/forms');
  | Config
  * ------------------------------*/
 
-var docReady = function(){
+var _config = {
 
-    // Document ready JS goes here...
+    docReady: function(){
+        // Document ready JS goes here...
+        // Environment vars
+        $BODY = $('body');
+        $HTML = $('html');
+        $WINDOW = $(window);
+        _setEnv();
 
-    // Environment
-    $BODY = $('body');
-    $HTML = $('html');
-    $WINDOW = $(window);
-    setEnv();
+        // Other global settings
+        EASING = {
+            easing: 'easeInOut'
+        };
 
-    // Other settings
-    EASING = {
-        easing: 'easeInOut'
-    };
+        // Global Events
+        _bindEvents();
 
-    // Modules
-    NAV.init();
-    FORMS.init();
+        // Modules
+        NAV.init();
+        FORMS.init();
 
-};
+    },
 
-var setEnv = function() {
+    onResize: function(){
+        // Resize events go here...
+        _setEnv();
+        NAV.resize();
+    },
+
+    onScroll: function(){
+        // Scroll events go here...
+    },
+
+}
+
+// Functions
+var _setEnv = function() {
     VPW = $WINDOW.width();
     ISMOBILE = VPW < 768;
     NOTMOBILE = VPW > 767;
 };
 
-var bindEvents = function(){
-
+var _bindEvents = function(){
     // Resize listener
-    var resizeTimer;
-
     $WINDOW.resize(function() {
-
-        clearTimeout(resizeTimer);
-
-        resizeTimer = setTimeout(function() {
-
-            onResize();
-
-        }, 250);
-
+        _config.onResize();
     });
 
     // Scroll listener
-    $WINDOW.scroll(function() {
-
-    });
-
-}
-
-var onResize = function(){
-    // Resize events go here...
-    setEnv();
-    NAV.resize();
+    $WINDOW.scroll( function() {
+        _config.onScroll();
+    } );
 };
 
-var onScroll = function(){
-    // Scroll events go here...
-};
-
+// Document ready
 $(function(){
-    docReady();
-    bindEvents();
+    _config.docReady();
 });
