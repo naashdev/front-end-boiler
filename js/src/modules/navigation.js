@@ -18,10 +18,10 @@ var $el = {};
 var _setEl = function(){
 
     $el = {
-        nav: $('.header .js_main-nav'),
+        nav: $('.header .js-main-nav'),
         navLi: $('.header .main-navigation > ul > li'),
         subnavs: $('.header .main-navigation .submenu'),
-        openNav: $('.header .js_menu-ctrl, .header .main-navigation .js_submenu-ctrl')
+        openNav: $('.header .js-menu-ctrl, .header .main-navigation .js-submenu-ctrl')
     };
 
 }
@@ -38,7 +38,7 @@ var _toggle = function(e){
 
     if (typeof e !== 'undefined') e.preventDefault();
 
-    if ($(this).hasClass('js_menu-ctrl')) {
+    if ($(this).hasClass('js-menu-ctrl')) {
 
         if ($BODY.hasClass('nav-open')) {
             // Close subnavs
