@@ -39,7 +39,7 @@ gulp.task('js', function() {
             this.emit('end');
         })
         .pipe(source('bundle.js'))
-        //.pipe(streamify(uglify()))
+        .pipe(streamify(uglify()))
         .pipe(gulp.dest('js/dist'));
 });
 
