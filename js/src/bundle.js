@@ -1,16 +1,14 @@
 /* --------------------------------
- | Modules
+ | Modules & Plugins
  * ------------------------------*/
-
+var VIEWPORT = require('./plugins/viewportSize.js');
 var NAV = require('./modules/navigation');
 var FORMS = require('./modules/forms');
 
 /* --------------------------------
  | Config
  * ------------------------------*/
-
 var _config = {
-
     docReady: function(){
         // Document ready JS goes here...
         // Environment vars
@@ -45,9 +43,12 @@ var _config = {
 
 }
 
-// Functions
+/* --------------------------------
+ | Core Functions
+ * ------------------------------*/
 var _setEnv = function() {
-    VPW = $WINDOW.width();
+    VPW = viewportSize.getWidth();
+    VPH = viewportSize.getHeight();
     ISMOBILE = VPW < 768;
     NOTMOBILE = VPW > 767;
 };

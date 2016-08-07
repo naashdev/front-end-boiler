@@ -32,14 +32,14 @@ gulp.task('css', function() {
 });
 
 gulp.task('js', function() {
-    browserify('js/src/build.js')
+    browserify('js/src/bundle.js')
         .bundle()
         .on('error', err => {
             gutil.log("Browserify Error", gutil.colors.red(err.message));
             this.emit('end');
         })
-        .pipe(source('build.min.js'))
-        .pipe(streamify(uglify()))
+        .pipe(source('bundle.js'))
+        //.pipe(streamify(uglify()))
         .pipe(gulp.dest('js/dist'));
 });
 
@@ -56,7 +56,7 @@ gulp.task('watch', function() {
     gulp.watch('sass/**/*.sass', ['css']);
     gulp.watch('js/src/**/*.js', ['js']);
     gulp.watch('css/master.css').on('change', browsersync.reload);
-    gulp.watch('js/dist/build.min.js').on('change', browsersync.reload);
+    gulp.watch('js/dist/bundle.js').on('change', browsersync.reload);
     gulp.watch("index.html").on('change', browsersync.reload);
 
 });

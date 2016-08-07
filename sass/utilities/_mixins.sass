@@ -13,6 +13,15 @@
     bottom: 0
     left: 0
 
+@mixin valign-icn($align:false)
+    position: absolute
+    margin-top: -0.5em
+    top: 50%
+    @if $align == 'left'
+        left: 0
+    @else if $align == 'right'
+        right: 0
+
 @mixin text-rendering
     text-rendering: optimizeLegibility
     -webkit-font-smoothing: antialiased
@@ -61,6 +70,24 @@
         background: $bg
         color: $text
 
+@mixin spinner($size:20px, $color-primary:rgba($color-brand, .6), $color-secondary:rgba($color-brand, .4), $border-width:2px, $time:.8s)
+    display: block
+    border-radius: 50%
+    width: $size
+    height: $size
+    border-right: $border-width solid $color-secondary
+    border-bottom: $border-width solid $color-secondary
+    border-left: $border-width solid $color-primary
+    border-top: $border-width solid $color-primary
+    position: absolute
+    top: 50%
+    left: 0
+    right: 0
+    margin: -$size * 0.5 auto 0
+    z-index: 2
+    +fluid-transition
+    animation: spin $time linear infinite
+
 /* --------------------------------------------------------------------------
  * Animations
  * ------------------------------------------------------------------------*/
@@ -70,3 +97,9 @@
 
 @mixin fluid-transition($property:all, $time:.3s)
     transition: $property $time $fluid-transition
+
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)
