@@ -13,14 +13,20 @@
     bottom: 0
     left: 0
 
-@mixin valign-icn($align:false)
-    position: absolute
-    margin-top: -0.5em
-    top: 50%
-    @if $align == 'left'
-        left: 0
-    @else if $align == 'right'
-        right: 0
+@mixin align-icn($align:false, $offset:0)
+    position: relative
+    &:before
+        position: absolute
+        margin-top: -0.5em
+        top: 50%
+        @if $align == 'left'
+            left: $offset + px
+        @else if $align == 'right'
+            right: $offset + px
+        @else
+            left: $offset + px
+            right: $offset + px
+            text-align: center
 
 @mixin text-rendering
     text-rendering: optimizeLegibility
@@ -39,14 +45,31 @@
     margin: 0
     padding: 0
 
-@mixin display-bg($width, $height, $bg, $image:false)
+@mixin display-bg($width, $height, $bg, $bg-size: $width + px $height + px, $bg-position: center)
     display: block
-    width: $width
-    height: $height
-    @if $image
-        background: url($bg)
+    width: $width + px
+    height: $height + px
+    @if type_of($bg) == string
+        background-image: url($bg)
+        background-size: $bg-size
+        background-position: $bg-position
+        background-repeat: no-repeat
     @else
-        background: $bg
+        background-color: $bg
+
+@mixin logo($image, $width, $height, $md-height, $lg-height)
+    +display-bg($width, $height, $image)
+    @media #{$tablet}
+        $md-width: ceil( ($width / $height) * $md-height )
+        width: $md-width + px
+        height: $md-height + px
+        background-size: $md-width + px $md-height + px
+    @media #{$desktop}
+        $lg-width: ceil( ($width / $height) * $lg-height )
+        width: $lg-width + px
+        height: $lg-height + px
+        background-size: $lg-width + px $lg-height + px
+
 
 @mixin placeholder($color, $opacity)
     ::-webkit-input-placeholder

@@ -29,14 +29,8 @@
     // Logo
     // ---------------------------------------------
     .logo
-        +display-bg(80px, 50px, '../images/logo.svg')
+        +logo('../images/logo.svg', 90, 50, 60, 90)
         margin: 10px 0
-        @media #{$tablet}
-            width: 140px
-            height: 90px
-        @media #{$desktop}
-            width: 140px
-            height: 90px
     // Main Nav
     // ---------------------------------------------
     .main-navigation
@@ -107,30 +101,30 @@
 // Menu & Submenu Toggle
 // ---------------------------------------------
 .menu-ctrl
-  width: 30px
-  height: 22px
-  display: block
-  position: relative
-  @media #{$tablet-desktop}
-    display: none
-  > .line
     width: 30px
-    height: 2px
-    background: $color-font
+    height: 22px
     display: block
-    position: absolute
-  > .line1
-    top: 0px
-    +transition(.4s ease-in-out)
-  > .line2
-    top: 10px
-    +transition(.3s ease-in-out)
-  > .line3
-    top: 20px
-    +transition(.4s ease-in-out)
+    position: relative
+    @media #{$tablet-desktop}
+        display: none
+    > .line
+        width: 30px
+        height: 2px
+        background: $color-font
+        display: block
+        position: absolute
+    > .line1
+        top: 0px
+        transition: .4s ease-in-out
+    > .line2
+        top: 10px
+        transition: .3s ease-in-out
+    > .line3
+        top: 20px
+        transition: .4s ease-in-out
 
 .arrow
-    +display-bg(42px, 42px, $color-brand)
+    +display-bg(42, 42, $color-brand)
     position: absolute
     right: 0
     top: 0
@@ -151,3 +145,9 @@
             > .line3
                 transform: rotate(-45deg)
                 top: 10px
+
+
+// playgorund
+.nath
+    +display-bg(40,40,'../images/logo.jpg')
+    //+align-icn
