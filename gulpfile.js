@@ -34,7 +34,7 @@ gulp.task('css', function() {
 gulp.task('js', function() {
     browserify('js/src/bundle.js')
         .bundle()
-        .on('error', err => {
+        .on('error', function(err){
             gutil.log("Browserify Error", gutil.colors.red(err.message));
             this.emit('end');
         })
