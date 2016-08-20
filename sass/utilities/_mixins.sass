@@ -57,18 +57,18 @@
     @else
         background-color: $bg
 
-@mixin logo($image, $width, $height, $md-height, $lg-height)
-    +display-bg($width, $height, $image)
+@mixin logo($image, $width, $height, $md-height, $sm-height)
+    $sm-width: ceil( ($width / $height) * $sm-height )
+    +display-bg($sm-width, $sm-height, $image)
     @media #{$tablet}
         $md-width: ceil( ($width / $height) * $md-height )
         width: $md-width + px
         height: $md-height + px
         background-size: $md-width + px $md-height + px
     @media #{$desktop}
-        $lg-width: ceil( ($width / $height) * $lg-height )
-        width: $lg-width + px
-        height: $lg-height + px
-        background-size: $lg-width + px $lg-height + px
+        width: $width + px
+        height: $height + px
+        background-size: $width + px $height + px
 
 
 @mixin placeholder($color, $opacity)

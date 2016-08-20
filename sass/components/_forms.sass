@@ -36,15 +36,17 @@ label
         font-family: $font-copy
         width: 100% !important
         height: 50px !important
-        background: $color-white
+        background: transparent
         padding: 14px 12px
         border: 1px solid $color-line
     .customSelect
         &:after
-            content: ">"
             font-size: 18px
             position: absolute
+            top: 50%
+            margin-top: -0.5em
             right: 10px
+            z-index: -1
 
 .customSelectInner
     width: 100%!important

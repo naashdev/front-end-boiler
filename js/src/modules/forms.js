@@ -1,5 +1,6 @@
 // Required
 var CUSTOMSELECT = require('../plugins/jquery.customSelect.min.js');
+var PLACEHOLDER = require('../plugins/jquery.placeholder.min.js');
 
 // Init
 var _init = function(){
@@ -10,6 +11,9 @@ var _init = function(){
     // Style select boxes
     $el.select.customSelect();
 
+    // Add placeholder for IE9
+    $el.field.placeholder();
+
 };
 
 // Elements
@@ -19,6 +23,7 @@ var _setEl = function(){
 
     $el = {
         select: $('.select > select'),
+        field: $('input, text-area')
     };
 
 }

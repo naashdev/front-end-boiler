@@ -1,9 +1,11 @@
 /* --------------------------------
  | Modules & Plugins
  * ------------------------------*/
+global.$ = require('jquery');
 var VIEWPORT = require('./plugins/viewportSize.js');
 var NAV = require('./modules/navigation');
 var FORMS = require('./modules/forms');
+var SLIDERS = require('./modules/sliders');
 
 /* --------------------------------
  | Config
@@ -28,6 +30,7 @@ var _config = {
         // Modules
         NAV.init();
         FORMS.init();
+        SLIDERS.init();
 
     },
 
@@ -49,8 +52,9 @@ var _config = {
 var _setEnv = function() {
     VPW = viewportSize.getWidth();
     VPH = viewportSize.getHeight();
-    ISMOBILE = VPW < 768;
-    NOTMOBILE = VPW > 767;
+    BREAKMOBILE = 767;
+    ISMOBILE = VPW <= BREAKMOBILE;
+    NOTMOBILE = VPW > BREAKMOBILE;
 };
 
 var _bindEvents = function(){

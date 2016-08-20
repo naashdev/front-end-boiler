@@ -7,7 +7,7 @@
     // Mobile Layout
     // ---------------------------------------------
     @media #{$mobile-large}
-        background: $color-brand
+        background: $color-light
         .grid
             padding: 0
         .menu-ctrl
@@ -20,6 +20,8 @@
     // Tablet & Desktop Layout
     // ---------------------------------------------
     @media #{$tablet-desktop}
+        .logo
+            margin: 20px 0
         .menu-ctrl
             display: none
         .main-navigation
@@ -29,8 +31,8 @@
     // Logo
     // ---------------------------------------------
     .logo
-        +logo('../images/logo.svg', 90, 50, 60, 90)
-        margin: 10px 0
+        +logo('../images/logo.svg', 254, 90, 60, 45)
+        margin: 12px 0 12px 20px
     // Main Nav
     // ---------------------------------------------
     .main-navigation
@@ -59,7 +61,6 @@
                 .submenu
                     display: none
         @media #{$tablet-desktop}
-            margin: 0 0 20px
             > ul
                 // Top level
                 > li
