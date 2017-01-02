@@ -26,7 +26,7 @@ var gulp = require('gulp'),
 
 // Settings
 var USE_BROWSERSYNC = true;
-    DEV_URL = 'localhost/...'; // Your local dev url
+    DEV_URL = 'http://localhost/SITE_NAME'; // Your local dev url
     MINIFY = true;
 
 // CSS
@@ -92,6 +92,7 @@ gulp.task('watch', ['bundle'], function() {
             serverSettings = {
                 proxy: DEV_URL
             };
+            break;
         default:
             serverSettings = {
                 server: {
