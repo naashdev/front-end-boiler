@@ -1,0 +1,9 @@
+// Page
+// ---------------------------------------------
+
+.page-content {
+    padding: $pad-md 0;
+    @media #{$breakpoint-md-and-lg} {
+        padding: $pad-lg 0;
+    }
+}

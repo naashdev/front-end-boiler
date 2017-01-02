@@ -1,0 +1,33 @@
+// Helpers
+// ---------------------------------------------
+
+.hide-text {
+    font-size: 0 !important;
+    color: transparent !important;
+    text-shadow: none;
+    background-color: transparent;
+    border: 0;
+    display: block;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+    text-decoration: none;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.relative {
+    position: relative;
+}
+
+.center {
+    text-align: center;
+}
+
+.nav {
+    @include reset-list;
+    li {
+        float: left;
+    }
+}

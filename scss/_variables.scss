@@ -1,0 +1,41 @@
+// Colors
+// ---------------------------------------------
+
+// Base
+$color-white: #FFFFFF;
+$color-black: #000000;
+$color-light: #FEFEFE;
+$color-line: #EBEBEB;
+
+// Brand
+$color-brand: #9ce038;
+$color-accent: #F76869;
+
+// Font
+$color-font: #373737;
+$color-font-light: #979797;
+
+// Fonts
+// ---------------------------------------------
+
+$font-copy: 'Lato', Helvetica, Arial, sans-serif;
+$font-accent: Georgia, serif;
+$font-line-height: 1.5;
+
+// Size
+$font-sm: 11px;
+$font-md: 14px;
+$font-lg: 18px;
+
+// Spacing
+// ---------------------------------------------
+
+$pad-sm: 20px;
+$pad-md: 40px;
+$pad-lg: 60px;
+
+// Animation
+// ---------------------------------------------
+
+$transition: ease-in-out;
+$fluid-transition: cubic-bezier(0.165, 0.84, 0.44, 1);

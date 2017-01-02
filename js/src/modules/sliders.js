@@ -1,7 +1,6 @@
 // Required
 var SLICKSLIDER = require('../plugins/slick.min.js');
 
-
 // Init
 var _init = function(){
 

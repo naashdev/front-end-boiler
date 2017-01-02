@@ -1,0 +1,152 @@
+// Styles
+// ---------------------------------------------
+
+@mixin absolute {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+}
+
+@mixin align-icn($align:false, $offset:0) {
+    position: relative;
+    &:before {
+        position: absolute;
+        margin-top: -0.5em;
+        top: 50%;
+        @if $align == 'left' {
+            left: $offset + px;
+        }
+        @else if $align == 'right' {
+            right: $offset + px;
+        }
+        @else {
+            left: $offset + px;
+            right: $offset + px;
+            text-align: center;
+        }
+    }
+}
+
+@mixin text-rendering {
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin clearfix {
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+}
+@mixin reset-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+@mixin display-bg($width, $height, $bg, $bg-size: $width + px $height + px, $bg-position: center) {
+    display: block;
+    width: $width + px;
+    height: $height + px;
+    @if type_of($bg) == string {
+        background-image: url($bg);
+        background-size: $bg-size;
+        background-position: $bg-position;
+        background-repeat: no-repeat;
+    }
+    @else {
+        background-color: $bg;
+    }
+}
+
+@mixin logo($image, $width, $height, $md-height, $sm-height) {
+    $sm-width: ceil( ($width / $height) * $sm-height );
+    @include display-bg($sm-width, $sm-height, $image);
+    @media #{$breakpoint-md} {
+        $md-width: ceil( ($width / $height) * $md-height );
+        width: $md-width + px;
+        height: $md-height + px;
+        background-size: $md-width + px $md-height + px;
+    }
+    @media #{$breakpoint-lg} {
+        width: $width + px;
+        height: $height + px;
+        background-size: $width + px $height + px;
+    }
+}
+
+
+@mixin placeholder($color, $opacity) {
+    ::-webkit-input-placeholder {
+        color: $color;
+        opacity: $opacity;
+    }
+    :-moz-placeholder {
+        color: $color;
+        opacity: $opacity;
+    }
+    ::-moz-placeholder {
+        color: $color;
+        opacity: $opacity;
+    }
+    :-ms-input-placeholder {
+        color: $color;
+        opacity: $opacity;
+    }
+}
+
+@mixin selection($bg, $text) {
+    ::selection {
+        background: $bg;
+        color: $text;
+    }
+    ::-moz-selection {
+        background: $bg;
+        color: $text;
+    }
+}
+
+@mixin spinner($size:20px, $color-primary:rgba($color-brand, .6), $color-secondary:rgba($color-brand, .4), $border-width:2px, $time:.8s) {
+    display: block;
+    border-radius: 50%;
+    width: $size;
+    height: $size;
+    border-right: $border-width solid $color-secondary;
+    border-bottom: $border-width solid $color-secondary;
+    border-left: $border-width solid $color-primary;
+    border-top: $border-width solid $color-primary;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    margin: -$size * 0.5 auto 0;
+    z-index: 2;
+    @include fluid-transition;
+    animation: spin $time linear infinite;
+}
+
+// Animations
+// ---------------------------------------------
+
+@mixin default-transition($property:all, $time:.3s) {
+    transition: $property $time ease-in-out;
+}
+
+@mixin fluid-transition($property:all, $time:.3s) {
+    transition: $property $time $fluid-transition;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

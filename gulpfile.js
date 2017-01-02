@@ -1,7 +1,16 @@
 /* --------------------------------
+ |
  | Project Gulpfile
- * ------------------------------*/
+ |
+ | USING GULP:
+ | 1. Open the command line from this directory and run 'npm install' to install all dependancies.
+ | 2. Run 'gulp watch' to watch and compile all SCSS and JS files.
+ |
+ | NOTE: To use BrowserSync (live reload), set the dev url in the settings area.
+ |
+ --------------------------------*/
 
+// Dependencies
 var gulp = require('gulp'),
     gutil = require('gulp-util'),
     streamify = require('gulp-streamify'),
@@ -12,10 +21,17 @@ var gulp = require('gulp'),
     autoprefixer = require('gulp-autoprefixer')
     mmq = require('gulp-merge-media-queries'),
     csso = require('gulp-csso'),
-    browsersync = require('browser-sync');
+    browsersync = require('browser-sync'),
+    gulpif = require('gulp-if');
 
+// Settings
+var USE_BROWSERSYNC = true;
+    DEV_URL = 'localhost/...'; // Your local dev url
+    MINIFY = true;
+
+// CSS
 gulp.task('css', function() {
-    gulp.src('sass/*.sass')
+    gulp.src('scss/*.scss')
         .pipe(sass({
             outputStyle: 'expanded',
             sourcemap: false
@@ -27,10 +43,17 @@ gulp.task('css', function() {
         .pipe(autoprefixer({
             browsers: ['>1%', 'ie 9']
         }))
-        .pipe(csso())
+        // Only minify if turned on
+        .pipe(
+            gulpif( MINIFY, csso({
+                    restructure: false
+                })
+            )
+        )
         .pipe(gulp.dest('css'));
 });
 
+// JS
 gulp.task('js', function() {
     browserify('js/src/bundle.js')
         .bundle()
@@ -39,24 +62,52 @@ gulp.task('js', function() {
             this.emit('end');
         })
         .pipe(source('bundle.js'))
-        .pipe(streamify(uglify()))
+        // Only minify if turned on
+        .pipe(
+            gulpif(MINIFY,
+                streamify( uglify() )
+            )
+        )
         .pipe(gulp.dest('js/dist'));
 });
 
-gulp.task('watch', function() {
+// Bundle Everything
+gulp.task('bundle', ['css','js']);
 
-    // Start BrowserSync Server
-    browsersync.init({
-        server: {
-            baseDir: "./"
-        }
-    });
+// Watch Everything
+gulp.task('watch', ['bundle'], function() {
 
-    // Watch Files
-    gulp.watch('sass/**/*.sass', ['css']);
+    // Watch JS & SCSS files
+    gulp.watch('scss/**/*.scss', ['css']);
     gulp.watch('js/src/**/*.js', ['js']);
+
+    // Only run BrowserSync if specified
+    if (!USE_BROWSERSYNC) return;
+
+    var serverSettings = {};
+
+    // Run server from provided URL or fallback to static server
+    switch(typeof DEV_URL) {
+        case 'string':
+            serverSettings = {
+                proxy: DEV_URL
+            };
+        default:
+            serverSettings = {
+                server: {
+                    baseDir: "./"
+                }
+            };
+    }
+
+    browsersync.init(serverSettings);
+
+    // Reload BrowserSync server when files change
     gulp.watch('css/master.css').on('change', browsersync.reload);
     gulp.watch('js/dist/bundle.js').on('change', browsersync.reload);
-    gulp.watch("index.html").on('change', browsersync.reload);
+    gulp.watch("*.php").on('change', browsersync.reload);
 
 });
+
+// Default task
+gulp.task('default', ['bundle']);
