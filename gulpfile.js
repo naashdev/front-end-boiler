@@ -26,8 +26,8 @@ var gulp = require('gulp'),
 
 // Settings
 var USE_BROWSERSYNC = true;
-    DEV_URL = 'http://localhost/SITE_NAME'; // Your local dev url
-    MINIFY = true;
+    DEV_URL = null; // Your local dev url
+    MINIFY = false;
 
 // CSS
 gulp.task('css', function() {
@@ -56,6 +56,7 @@ gulp.task('css', function() {
 // JS
 gulp.task('js', function() {
     browserify('js/src/bundle.js')
+        .transform(require('browserify-shim'), {global: true})
         .bundle()
         .on('error', function(err){
             gutil.log("Browserify Error", gutil.colors.red(err.message));

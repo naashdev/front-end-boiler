@@ -31,3 +31,12 @@
         float: left;
     }
 }
+
+@media #{$breakpoint-md-and-lg} {
+    .left {
+        float: left;
+    }
+    .right {
+        float: right;
+    }
+}

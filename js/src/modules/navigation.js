@@ -1,5 +1,5 @@
 // Required
-// .....
+var UTILS = require('./utils');
 
 // Init
 var _init = function(){
@@ -18,10 +18,10 @@ var $el = {};
 var _setEl = function(){
 
     $el = {
-        nav: $('.header .js-main-nav'),
-        navLi: $('.header .main-navigation > ul > li'),
+        menu: $('.header .js-mobile-menu'),
+        menuLi: $('.header .main-navigation > ul > li'),
         subnavs: $('.header .main-navigation .submenu'),
-        openNav: $('.header .js-menu-ctrl, .header .main-navigation .js-submenu-ctrl')
+        openNav: $('.header .js-menu-toggle, .header .main-navigation .js-submenu-toggle')
     };
 
 }
@@ -38,16 +38,16 @@ var _toggle = function(e){
 
     if (typeof e !== 'undefined') e.preventDefault();
 
-    if ($(this).hasClass('js-menu-ctrl')) {
+    if ($(this).hasClass('js-menu-toggle')) {
 
         if ($BODY.hasClass('nav-open')) {
             // Close subnavs
             $el.subnavs.slideUp();
-            $el.navLi.removeClass('is-open');
+            $el.menuLi.removeClass('is-open');
         }
 
         // Open main nav
-        $el.nav.slideToggle(400);
+        $el.menu.slideToggle(400);
         $BODY.toggleClass('nav-open');
 
 
@@ -57,7 +57,7 @@ var _toggle = function(e){
             subnav = parent.find('.submenu');
 
         // Close all sub navs
-        $el.navLi.not(parent).removeClass('is-open');
+        $el.menuLi.not(parent).removeClass('is-open');
         $el.subnavs.not(subnav).slideUp(400);
 
         // Open sub nav

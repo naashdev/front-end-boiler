@@ -54,6 +54,11 @@ h6,.h6 {
 
 p {
     margin: 0 0 20px;
+    @media #{$breakpoint-md-and-lg} {
+        &.lead {
+            font-size: $font-lg;
+        }
+    }
 }
 
 ul, ol {

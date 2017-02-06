@@ -1,5 +1,6 @@
 // Required
 var SLICKSLIDER = require('../plugins/slick.min.js');
+var UTILS = require('./utils');
 
 // Init
 var _init = function(){
@@ -9,6 +10,44 @@ var _init = function(){
 
     // Bind events
     _bindEvents();
+
+    // Define settings
+    var settings = _makeSettings($el.defaultCtrls);
+    var carouselSettings = _makeSettings($el.carouselCtrls, {
+        slidesToShow: 3,
+        responsive: [{
+            breakpoint: BREAKMOBILE,
+            settings: {
+                slidesToShow: 1,
+            }
+        }]
+    });
+
+
+
+    var bgPromise = new Promise( function(resolve, reject){
+        UTILS.loadBackgroundImg( $('.banner li'), false, resolve );
+    } );
+
+    var sliderPromise = new Promise( function(resolve, reject){
+        $el.default.on('init', resolve );
+        // Default slider
+        $el.default.slick(settings);
+
+    } );
+
+    Promise
+        .all([sliderPromise, bgPromise])
+        .then( function(){
+            $('.banner').addClass('is-loaded');
+        } )
+        .catch( function(){
+            console.log('an error happened');
+        } );
+
+
+    // Carousel slider
+    $el.carousel.slick(carouselSettings);
 
 };
 
@@ -29,24 +68,6 @@ var _setEl = function(){
 
 // Private functions
 var _bindEvents = function(){
-
-    // Define settings
-    var settings = _makeSettings($el.defaultCtrls);
-    var carouselSettings = _makeSettings($el.carouselCtrls, {
-        slidesToShow: 3,
-        responsive: [{
-            breakpoint: BREAKMOBILE,
-            settings: {
-                slidesToShow: 1,
-            }
-        }]
-    });
-
-    // Default slider
-    $el.default.slick(settings);
-
-    // Carousel slider
-    $el.carousel.slick(carouselSettings);
 
 };
 

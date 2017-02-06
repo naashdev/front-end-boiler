@@ -1,22 +1,32 @@
-/* --------------------------------
- | Modules & Plugins
- * ------------------------------*/
-global.$ = require('jquery');
+// Modules & Plugins
+// ---------------------------------------------
+
+// jQuery
+var $ = require('jquery');
+
+// Plugins
 var VIEWPORT = require('./plugins/viewportSize.js');
+
+// Polyfills
+var Promise = require('es6-promise-polyfill').Promise;
+
+// Modules
 var NAV = require('./modules/navigation');
 var FORMS = require('./modules/forms');
 var SLIDERS = require('./modules/sliders');
+var UTILS = require('./modules/utils');
 
-/* --------------------------------
- | Config
- * ------------------------------*/
+// Config
+// ---------------------------------------------
 var _config = {
     docReady: function(){
         // Document ready JS goes here...
+
         // Environment vars
         $BODY = $('body');
         $HTML = $('html');
         $WINDOW = $(window);
+        $DOCUMENT = $(document);
         _setEnv();
 
         // Other global settings
@@ -36,19 +46,23 @@ var _config = {
 
     onResize: function(){
         // Resize events go here...
+        // NOTE: this function is throttled
         _setEnv();
         NAV.resize();
     },
 
     onScroll: function(){
         // Scroll events go here...
+        // NOTE: this function is throttled
+        SLIDERS.scroll();
     },
 
 }
 
-/* --------------------------------
- | Core Functions
- * ------------------------------*/
+// Core Functions
+// ---------------------------------------------
+
+// Set environment vars
 var _setEnv = function() {
     VPW = viewportSize.getWidth();
     VPH = viewportSize.getHeight();
@@ -57,19 +71,17 @@ var _setEnv = function() {
     NOTMOBILE = VPW > BREAKMOBILE;
 };
 
+// Bind global events
 var _bindEvents = function(){
     // Resize listener
-    $WINDOW.resize(function() {
-        _config.onResize();
-    });
+    $WINDOW.resize( UTILS.throttle( _config.onResize, 150 )  );
 
     // Scroll listener
-    $WINDOW.scroll( function() {
-        _config.onScroll();
-    } );
+    $WINDOW.scroll( UTILS.throttle( _config.onScroll, 150 ) );
 };
 
-// Document ready
+// Fire Document Ready
+// ---------------------------------------------
 $(function(){
     _config.docReady();
 });

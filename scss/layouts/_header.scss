@@ -10,13 +10,13 @@
         .grid {
             padding: 0;
         }
-        .menu-ctrl {
+        .menu-toggle {
             position: absolute;
             top: 35px;
             margin-top: -11px;
             right: 20px;
         }
-        .main-navigation {
+        .mobile-menu {
             display: none;
         }
     }
@@ -26,10 +26,10 @@
         .logo {
             margin: 20px 0;
         }
-        .menu-ctrl {
+        .menu-toggle {
             display: none;
         }
-        .main-navigation {
+        .mobile-menu {
             display: block !important;
             .arrow {
                 display: none;
@@ -132,7 +132,7 @@
 
 // Menu & Submenu Toggle
 // ---------------------------------------------
-.menu-ctrl {
+.menu-toggle {
     width: 30px;
     height: 22px;
     display: block;
@@ -172,9 +172,9 @@
 
 // Mobile Menu Open
 // ---------------------------------------------
-.nav-open {
+.menu-open {
     .header {
-        .menu-ctrl {
+        .menu-toggle {
             > .line1 {
                 transform: rotate(45deg);
                 top: 10px;
