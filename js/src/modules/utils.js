@@ -187,6 +187,11 @@ var _loadBackgroundImg = function(bgImg, container, callback) {
 
 }
 
+// Hide keyboard on touch devices
+var _hideTouchKeyboard = function(){
+    document.activeElement.blur();
+}
+
 module.exports = {
     matchHeights: _matchHeights,
     scrollToHash: _scrollToHash,
@@ -197,5 +202,6 @@ module.exports = {
     createCookie: _createCookie,
     readCookie: _readCookie,
     deleteCookie: _deleteCookie,
-    loadBackgroundImg: _loadBackgroundImg
+    loadBackgroundImg: _loadBackgroundImg,
+    hideTouchKeyboard: _hideTouchKeyboard
 }

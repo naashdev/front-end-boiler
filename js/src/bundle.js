@@ -8,7 +8,7 @@ var $ = require('jquery');
 var VIEWPORT = require('./plugins/viewportSize.js');
 
 // Polyfills
-var Promise = require('es6-promise-polyfill').Promise;
+var Promise = require('promise-polyfill');
 
 // Modules
 var NAV = require('./modules/navigation');
@@ -44,6 +44,16 @@ var _config = {
 
     },
 
+    beforeDocReady: function(){
+        // JS to fire before document ready goes here...
+
+        // Add Promise support
+        if (!window.Promise) {
+          window.Promise = Promise;
+        }
+
+    },
+
     onResize: function(){
         // Resize events go here...
         // NOTE: this function is throttled
@@ -61,7 +71,6 @@ var _config = {
 
 // Core Functions
 // ---------------------------------------------
-
 // Set environment vars
 var _setEnv = function() {
     VPW = viewportSize.getWidth();
@@ -80,8 +89,10 @@ var _bindEvents = function(){
     $WINDOW.scroll( UTILS.throttle( _config.onScroll, 150 ) );
 };
 
-// Fire Document Ready
+// Init App
 // ---------------------------------------------
+_config.beforeDocReady();
+
 $(function(){
     _config.docReady();
 });
